@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohamed Hajeera | Resume Portfolio</title>
+<title>Mohamed Hajeera | Portfolio</title>
 
 <style>
 
@@ -15,46 +15,65 @@ font-family:Segoe UI, sans-serif;
 }
 
 body{
-background:#0e0f14;
+background:#000;
 color:white;
 overflow-x:hidden;
 }
 
-/* SCROLL HEIGHT */
+/* Make page scrollable */
 .scroll-space{
 height:400vh;
 }
 
-/* ANIMATION WATERMARK */
-.animation-bg{
+/* ANIMATED BACKGROUND */
+#bgCanvas{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100vh;
 z-index:-1;
-opacity:0.12;   /* 🔥 WATERMARK EFFECT */
+opacity:0.4; /* makes animation visible */
 pointer-events:none;
+filter:brightness(1.2) contrast(1.1);
 }
 
-/* RESUME CONTENT */
+/* GLASS RESUME CARD */
 .container{
+
 max-width:1000px;
 margin:auto;
-padding:60px 30px;
-background:rgba(20,22,28,0.65);
-backdrop-filter:blur(10px);
-border-radius:15px;
+margin-top:100px;
+margin-bottom:100px;
+padding:60px 40px;
+
+/* 🔥 VERY TRANSPARENT */
+background:rgba(255,255,255,0.03);
+
+backdrop-filter:blur(25px);
+-webkit-backdrop-filter:blur(25px);
+
+border:1px solid rgba(255,255,255,0.08);
+border-radius:20px;
+
+/* floating glass look */
+box-shadow:
+0 8px 32px rgba(0,0,0,0.4),
+inset 0 0 40px rgba(255,255,255,0.02);
+
 }
 
+/* TEXT VISIBILITY */
 h1{
 font-size:48px;
 letter-spacing:2px;
+text-shadow:0 0 10px rgba(0,0,0,0.8);
 }
 
 h3{
-color:#aaa;
+color:#ddd;
 margin-bottom:30px;
+text-shadow:0 0 8px rgba(0,0,0,0.8);
 }
 
 .section{
@@ -62,18 +81,20 @@ margin-top:40px;
 }
 
 .section h2{
-color:#4cafef;
+color:#7ecbff;
 margin-bottom:10px;
-border-bottom:1px solid #333;
+border-bottom:1px solid rgba(255,255,255,0.1);
 padding-bottom:5px;
+text-shadow:0 0 6px rgba(0,0,0,0.8);
+}
+
+p,li{
+line-height:1.7;
+text-shadow:0 0 6px rgba(0,0,0,0.9);
 }
 
 ul{
 margin-left:20px;
-}
-
-.contact p{
-margin:5px 0;
 }
 
 </style>
@@ -83,27 +104,25 @@ margin:5px 0;
 
 <div class="scroll-space"></div>
 
-<canvas id="bgCanvas" class="animation-bg"></canvas>
+<canvas id="bgCanvas"></canvas>
 
 <div class="container">
 
 <h1>MOHAMED HAJEERA</h1>
 <h3>ELECTRONICS ENTHUSIAST</h3>
 
-<div class="section contact">
+<div class="section">
 <h2>Contact</h2>
 <p>📞 9344521086</p>
 <p>📧 mohamedhajeera07@gmail.com</p>
-<p>📍 2/69, MMM Street, Eruvadi, Tirunelveli</p>
+<p>📍 2/69 MMM Street, Eruvadi, Tirunelveli</p>
 </div>
 
 <div class="section">
 <h2>Profile</h2>
 <p>
-I am Mohamed Hajeera, an Electronics and Communication Engineering student with a strong passion for core electronics. 
-I am eager to begin my career in the electronics industry where I can apply my knowledge in embedded systems, 
-VLSI, circuit design and communication technologies. With a keen interest in learning and innovation, 
-I aim to contribute effectively to core projects and grow as a skilled engineer.
+Electronics and Communication Engineering student with strong passion for 
+embedded systems, VLSI, circuit design and communication technologies.
 </p>
 </div>
 
@@ -126,13 +145,13 @@ I aim to contribute effectively to core projects and grow as a skilled engineer.
 <h2>Projects</h2>
 
 <p><b>Modern House Implementation</b><br>
-Automatic rain detector and cloth collecting system using rain sensor and motor driven mechanism.</p>
+Automatic rain detector and cloth collecting system.</p>
 
 <p><b>Water Level Detector</b><br>
-Water level detection system using resistors to sense different levels and buzzer alert.</p>
+Water level detection using resistors and buzzer.</p>
 
 <p><b>Automatic Light Control using LDR</b><br>
-Lighting system using LDR to switch lights ON/OFF based on ambient light.</p>
+Automatic lighting system based on ambient light.</p>
 
 </div>
 
