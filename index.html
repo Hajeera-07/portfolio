@@ -1,21 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Scrollable Frame Animation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Hajeera | Portfolio</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+background:#ffffff;
+color:#222;
+overflow-x:hidden;
+}
+
+/* ===== BACKGROUND ANIMATION ===== */
+#bgCanvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
+opacity:0.12;
+pointer-events:none;
+}
+
+/* ===== CONTENT ===== */
+.container{
+position:relative;
+z-index:2;
+width:85%;
+margin:auto;
+padding:50px 0;
+}
+
+header{
+text-align:center;
+margin-bottom:40px;
+}
+
+header h1{
+font-size:42px;
+letter-spacing:2px;
+}
+
+header p{
+font-size:18px;
+color:gray;
+}
+
+.section{
+margin-bottom:40px;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0px 4px 10px rgba(0,0,0,0.05);
+}
+
+.section h2{
+margin-bottom:10px;
+border-bottom:2px solid #eee;
+padding-bottom:5px;
+}
+
+ul{
+padding-left:20px;
+line-height:28px;
+}
+
+.project-title{
+font-weight:bold;
+margin-top:10px;
+}
+
+.contact p{
+line-height:28px;
+}
+</style>
 </head>
+
 <body>
 
-  <!-- Scroll height container -->
-  <div class="scroll-area"></div>
+<canvas id="bgCanvas"></canvas>
 
-  <!-- Sticky canvas -->
-  <div class="canvas-container">
-    <canvas id="frameCanvas"></canvas>
-  </div>
+<div class="container">
 
-  <script src="script.js"></script>
+<header>
+<h1>MOHAMED HAJEERA</h1>
+<p>ELECTRONICS ENTHUSIAST</p>
+</header>
+
+<div class="section contact">
+<h2>CONTACT</h2>
+<p>📞 9344521086</p>
+<p>📧 mohamedhajeera07@gmail.com</p>
+<p>📍 2/69,MMM STREET, ERUVADI, TIRUNELVELI</p>
+</div>
+
+<div class="section">
+<h2>PROFILE</h2>
+<p>
+I am Mohamed Hajeera, an Electronics and Communication Engineering student with a strong passion for core electronics. 
+I am eager to begin my career in the electronics industry where I can apply my knowledge in embedded systems, VLSI, 
+circuit design, and communication technologies. With a keen interest in learning and innovation, I aim to contribute 
+effectively to core projects and grow as a skilled and impactful engineer in the field.
+</p>
+</div>
+
+<div class="section">
+<h2>SKILLS</h2>
+<ul>
+<li>Strategic Planning</li>
+<li>Problem Solving</li>
+<li>Multi Tasking</li>
+<li>Creative Thinking</li>
+<li>Flexibility</li>
+<li>Quick learner</li>
+<li>Communication</li>
+<li>Time management</li>
+<li>Leadership</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>LANGUAGES</h2>
+<ul>
+<li>English</li>
+<li>Tamil</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>HOBBIES</h2>
+<ul>
+<li>Reading books</li>
+<li>Gardening</li>
+<li>Photography</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>PROJECTS</h2>
+
+<p class="project-title">MODERN HOUSE IMPLEMENTATION</p>
+<p><b>Automatic rain detector and cloth collecting system</b></p>
+<p>
+Designed and developed a working model that detects rainfall using a rain sensor and automatically retracts clothes 
+from an outdoor line using a motor-driven mechanism. Integrated basic electronics and microcontroller programming 
+to protect clothes from getting wet during sudden rain. Focused on automation, real-time sensing, and practical 
+application in daily life.
+</p>
+
+<p class="project-title">Water level detector</p>
+<p>
+Developed a simple water level detection system using resistors to sense different water levels and a buzzer to 
+alert when the tank is full. The project demonstrates basic circuit design, water conductivity principles, and 
+practical application in water management.
+</p>
+
+<p class="project-title">Automatic light control using LDR sensor</p>
+<p>
+Built an automatic lighting system using an LDR (Light Dependent Resistor) to detect ambient light levels. 
+The circuit switches lights ON in darkness and OFF in daylight, promoting energy efficiency and automation. 
+Applied basic electronics and sensor-based control logic.
+</p>
+
+</div>
+
+<div class="section">
+<h2>EDUCATION</h2>
+<p><b>ELECTRONICS AND COMMUNICATION ENGINEERING</b></p>
+<p>College : Government College of Engineering, Tirunelveli</p>
+</div>
+
+</div>
+
+<script>
+const canvas = document.getElementById("bgCanvas");
+const context = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const frameCount = 240;
+const images = [];
+let loadedImages = 0;
+
+function currentFrame(index){
+return `frames/ezgif-frame-${index.toString().padStart(3,'0')}.jpg`;
+}
+
+for(let i=1;i<=frameCount;i++){
+const img=new Image();
+img.src=currentFrame(i);
+img.onload=()=>{
+loadedImages++;
+if(loadedImages===1) context.drawImage(img,0,0,canvas.width,canvas.height);
+};
+images.push(img);
+}
+
+function updateImage(index){
+if(images[index]){
+context.clearRect(0,0,canvas.width,canvas.height);
+context.drawImage(images[index],0,0,canvas.width,canvas.height);
+}
+}
+
+window.addEventListener('scroll',()=>{
+const scrollTop=document.documentElement.scrollTop;
+const maxScroll=document.documentElement.scrollHeight-window.innerHeight;
+const scrollFraction=scrollTop/maxScroll;
+const frameIndex=Math.min(frameCount-1,Math.ceil(scrollFraction*frameCount));
+updateImage(frameIndex);
+});
+</script>
+
 </body>
 </html>
